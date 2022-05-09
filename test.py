@@ -1,14 +1,19 @@
 import requests
 
 BASE = "http://127.0.0.1:5000/"
-data = [{"likes": 90, "name": "Jackass", "views": 100},
-        {"likes": 100, "name": "How to make REST API", "views": 8000000},
-        {"likes": 1, "name": "Odyn", "views": 740000}]
 
-for i in range(len(data)):
-    response = requests.put(BASE + "video/" + str(i), data[i])
-    print(response.json())
+# update
+response = requests.patch(BASE + "video/2", {"views": 99, "likes": 21})
+print(response.json())
 
 input()
-response = requests.get(BASE + "video/2")
+
+# add new one
+response = requests.put(BASE + "video/21", {"name": "Wojtek - junior Python dev", "views": 0, "likes": 0})
+print(response.json())
+
+input()
+
+# update last video
+response = requests.patch(BASE + "video/21", { "views": 100, "likes": 47})
 print(response.json())
